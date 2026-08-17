@@ -4,12 +4,12 @@ Une application Flutter multi-écrans pour explorer et réserver des destination
 
 ## Fonctionnalités
 
-- 🏠 **Écran d'accueil** : Destinations populaires, actions rapides
-- 🔍 **Liste des destinations** : Recherche, filtrage par saison et budget
-- 📋 **Détails des destinations** : Informations complètes, activités, réservation
-- 📝 **Formulaire de réservation** : Validation complète (3 champs minimum)
-- 🌓 **Thème clair/sombre** : Basculement dynamique
-- 📱 **Responsive** : Adaptation mobile et tablette
+-  **Écran d'accueil** : Destinations populaires, actions rapides
+-  **Liste des destinations** : Recherche, filtrage par saison et budget
+-  **Détails des destinations** : Informations complètes, activités, réservation
+-  **Formulaire de réservation** : Validation complète (3 champs minimum)
+-  **Thème clair/sombre** : Basculement dynamique
+-  **Responsive** : Adaptation mobile et tablette
 
 ## Widgets Utilisés
 
@@ -33,7 +33,7 @@ Une application Flutter multi-écrans pour explorer et réserver des destination
 
 ## Captures d'écran
 
-[Insérer les captures d'écran ici]
+![alt text](images/photo_1_2026-08-17_16-41-49.jpg) ![alt text](images/photo_2_2026-08-17_16-41-49.jpg) ![alt text](images/photo_3_2026-08-17_16-41-49.jpg) ![alt text](images/photo_4_2026-08-17_16-41-49.jpg) ![alt text](images/photo_5_2026-08-17_16-41-49.jpg) ![alt text](images/photo_6_2026-08-17_16-41-49.jpg)
 
 ## Technologies
 
@@ -45,9 +45,15 @@ Une application Flutter multi-écrans pour explorer et réserver des destination
 ## Structure du Projet
 
 lib/
-├── models/ # Modèles de données
+
+├── models/  Modèles de données
+
 ├── data/ # Données mockées
+
 ├── screens/ # Écrans de l'application
+
 ├── widgets/ # Widgets réutilisables
+
 ├── theme/ # Thèmes clair/sombre
+
 └── router/ # Configuration de la navigation
