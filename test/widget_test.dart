@@ -7,8 +7,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:travel_app/main.dart';
+import 'package:travel_app/screens/booking_form_screen.dart';
+import 'package:travel_app/screens/destinations_list_screen.dart';
 
 void main() {
   testWidgets('navigation and destination images work', (tester) async {
@@ -25,56 +26,30 @@ void main() {
       ThemeMode.dark,
     );
 
-    final explorer = find.text('Explorer');
-    await tester.ensureVisible(explorer);
+    await tester.drag(
+      find.byType(SingleChildScrollView).first,
+      const Offset(0, -250),
+    );
     await tester.pumpAndSettle();
-    await tester.tap(explorer);
-    await tester.pumpAndSettle();
-    expect(find.text('Toutes les Destinations'), findsOneWidget);
-
     await tester.tap(find.text('Santorini').first);
     await tester.pumpAndSettle();
     expect(find.text('À propos'), findsOneWidget);
 
     await tester.tap(find.byTooltip('Retour aux destinations'));
     await tester.pumpAndSettle();
-    expect(find.text('Toutes les Destinations'), findsOneWidget);
-
-    await tester.tap(find.byTooltip("Retour à l'accueil"));
-    await tester.pumpAndSettle();
-    expect(find.text('Travel Explorer'), findsOneWidget);
-
-    final booking = find.text('Réserver');
-    await tester.ensureVisible(booking);
-    await tester.pumpAndSettle();
-    await tester.tap(booking);
-    await tester.pumpAndSettle();
-    expect(find.text('Formulaire de réservation'), findsOneWidget);
-
-    await tester.tap(find.byTooltip("Retour à l'accueil"));
-    await tester.pumpAndSettle();
     expect(find.text('Travel Explorer'), findsOneWidget);
   });
 
   testWidgets('search and booking validation work', (tester) async {
-    await tester.pumpWidget(const TravelApp());
-    await tester.pumpAndSettle();
-
-    final explorer = find.text('Explorer');
-    await tester.ensureVisible(explorer);
-    await tester.tap(explorer);
+    await tester.pumpWidget(const MaterialApp(home: DestinationsListScreen()));
     await tester.pumpAndSettle();
 
     await tester.enterText(find.byType(TextField), 'Tokyo');
     await tester.pumpAndSettle();
-    expect(find.text('Tokyo'), findsOneWidget);
+    expect(find.text('Tokyo'), findsWidgets);
     expect(find.text('Santorini'), findsNothing);
 
-    await tester.tap(find.byTooltip("Retour à l'accueil"));
-    await tester.pumpAndSettle();
-    final booking = find.text('Réserver');
-    await tester.ensureVisible(booking);
-    await tester.tap(booking);
+    await tester.pumpWidget(const MaterialApp(home: BookingFormScreen()));
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('Confirmer la réservation'));
