@@ -18,6 +18,13 @@ void main() {
     expect(find.text('Travel Explorer'), findsOneWidget);
     expect(find.byType(Image), findsWidgets);
 
+    await tester.tap(find.byIcon(Icons.dark_mode));
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<MaterialApp>(find.byType(MaterialApp)).themeMode,
+      ThemeMode.dark,
+    );
+
     final explorer = find.text('Explorer');
     await tester.ensureVisible(explorer);
     await tester.pumpAndSettle();
@@ -47,5 +54,33 @@ void main() {
     await tester.tap(find.byTooltip("Retour à l'accueil"));
     await tester.pumpAndSettle();
     expect(find.text('Travel Explorer'), findsOneWidget);
+  });
+
+  testWidgets('search and booking validation work', (tester) async {
+    await tester.pumpWidget(const TravelApp());
+    await tester.pumpAndSettle();
+
+    final explorer = find.text('Explorer');
+    await tester.ensureVisible(explorer);
+    await tester.tap(explorer);
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byType(TextField), 'Tokyo');
+    await tester.pumpAndSettle();
+    expect(find.text('Tokyo'), findsOneWidget);
+    expect(find.text('Santorini'), findsNothing);
+
+    await tester.tap(find.byTooltip("Retour à l'accueil"));
+    await tester.pumpAndSettle();
+    final booking = find.text('Réserver');
+    await tester.ensureVisible(booking);
+    await tester.tap(booking);
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Confirmer la réservation'));
+    await tester.pumpAndSettle();
+    expect(find.text('Veuillez entrer votre nom'), findsOneWidget);
+    expect(find.text('Veuillez entrer votre email'), findsOneWidget);
+    expect(find.text('Veuillez entrer votre numéro'), findsOneWidget);
   });
 }

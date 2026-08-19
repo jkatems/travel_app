@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:travel_app/data/destinations_data.dart';
 import 'package:travel_app/widgets/destination_card.dart';
 import 'package:travel_app/widgets/custom_search_bar.dart';
 import 'package:travel_app/models/destination.dart';
+import 'package:travel_app/widgets/back_to_safe_screen_button.dart';
 
 class DestinationsListScreen extends StatefulWidget {
   const DestinationsListScreen({super.key});
@@ -58,16 +58,9 @@ class _DestinationsListScreenState extends State<DestinationsListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Toutes les Destinations'),
-        leading: IconButton(
+        leading: const BackToSafeScreenButton(
+          fallbackRoute: 'home',
           tooltip: "Retour à l'accueil",
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            if (context.canPop()) {
-              context.pop();
-            } else {
-              context.goNamed('home');
-            }
-          },
         ),
       ),
       body: Column(

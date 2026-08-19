@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/models/destination.dart';
 import 'package:travel_app/widgets/rating_stars.dart';
+import 'package:travel_app/widgets/back_to_safe_screen_button.dart';
 
 class DestinationDetailScreen extends StatelessWidget {
   final Destination destination;
@@ -16,16 +17,9 @@ class DestinationDetailScreen extends StatelessWidget {
           SliverAppBar(
             expandedHeight: 300,
             pinned: true,
-            leading: IconButton(
+            leading: const BackToSafeScreenButton(
+              fallbackRoute: 'destinations',
               tooltip: 'Retour aux destinations',
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                if (context.canPop()) {
-                  context.pop();
-                } else {
-                  context.goNamed('destinations');
-                }
-              },
             ),
             flexibleSpace: FlexibleSpaceBar(
               background: Stack(

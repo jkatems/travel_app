@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/screens/home_screen.dart';
+import 'package:travel_app/screens/favorites_screen.dart';
+import 'package:travel_app/screens/map_screen.dart';
 import 'package:travel_app/screens/destinations_list_screen.dart';
 import 'package:travel_app/screens/destination_detail_screen.dart';
 import 'package:travel_app/screens/booking_form_screen.dart';
@@ -8,25 +10,29 @@ import 'package:travel_app/data/destinations_data.dart';
 import 'package:travel_app/models/destination.dart';
 
 class AppRouter {
-  static GoRouter createRouter(
-    VoidCallback toggleTheme,
-    ThemeMode Function() currentTheme,
-  ) {
+  static GoRouter createRouter(VoidCallback toggleTheme) {
     return GoRouter(
       initialLocation: '/',
       routes: [
         GoRoute(
           path: '/',
           name: 'home',
-          builder: (context, state) => HomeScreen(
-            toggleTheme: toggleTheme,
-            currentTheme: currentTheme(),
-          ),
+          builder: (context, state) => HomeScreen(toggleTheme: toggleTheme),
         ),
         GoRoute(
           path: '/destinations',
           name: 'destinations',
           builder: (context, state) => const DestinationsListScreen(),
+        ),
+        GoRoute(
+          path: '/favorites',
+          name: 'favorites',
+          builder: (context, state) => const FavoritesScreen(),
+        ),
+        GoRoute(
+          path: '/map',
+          name: 'map',
+          builder: (context, state) => const MapScreen(),
         ),
         GoRoute(
           path: '/destination/:id',

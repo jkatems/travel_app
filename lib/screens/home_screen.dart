@@ -5,13 +5,8 @@ import 'package:travel_app/widgets/destination_card.dart';
 
 class HomeScreen extends StatelessWidget {
   final VoidCallback toggleTheme;
-  final ThemeMode currentTheme;
 
-  const HomeScreen({
-    super.key,
-    required this.toggleTheme,
-    required this.currentTheme,
-  });
+  const HomeScreen({super.key, required this.toggleTheme});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +20,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(
-              currentTheme == ThemeMode.light
+              Theme.of(context).brightness == Brightness.light
                   ? Icons.dark_mode
                   : Icons.light_mode,
             ),
@@ -147,7 +142,7 @@ class HomeScreen extends StatelessWidget {
                             icon: Icons.search,
                             label: 'Explorer',
                             color: Colors.orange,
-                            onTap: () => context.goNamed('destinations'),
+                            onTap: () => context.goNamed('favorites'),
                           ),
                           _buildQuickAction(
                             context,
@@ -161,7 +156,7 @@ class HomeScreen extends StatelessWidget {
                             icon: Icons.favorite,
                             label: 'Favoris',
                             color: Colors.red,
-                            onTap: () => context.goNamed('destinations'),
+                            onTap: () => context.goNamed('map'),
                           ),
                           _buildQuickAction(
                             context,

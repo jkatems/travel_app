@@ -4,11 +4,12 @@ Une application Flutter multi-écrans pour explorer et réserver des destination
 
 ## Fonctionnalités
 
--  **Écran d'accueil** : Destinations populaires, actions rapides
--  **Liste des destinations** : Recherche, filtrage par saison et budget
+-  **Écran d'accueil** : Destinations populaires, actions rapides et basculement clair/sombre
+-  **Liste des destinations** : Recherche, filtrage par saison et budget, avec grille responsive
 -  **Détails des destinations** : Informations complètes, activités, réservation
--  **Formulaire de réservation** : Validation complète (3 champs minimum)
--  **Thème clair/sombre** : Basculement dynamique
+-  **Formulaire de réservation** : Validation du nom, de l’e-mail et du téléphone
+-  **Favoris et carte** : Deux écrans supplémentaires accessibles depuis l’accueil
+-  **Thème clair/sombre** : Basculement dynamique depuis l’accueil
 -  **Responsive** : Adaptation mobile et tablette
 
 ## Widgets Utilisés
@@ -27,9 +28,22 @@ Une application Flutter multi-écrans pour explorer et réserver des destination
 ## Installation
 
 1. Assurez-vous d'avoir Flutter installé
-2. Clonez le dépôt : `git clone [url-du-repo]`
+2. Clonez le dépôt : `git clone (https://github.com/jkatems/travel_app)`
 3. Installez les dépendances : `flutter pub get`
 4. Lancez l'application : `flutter run`
+
+## Qualité
+
+Les tests unitaires et widgets couvrent les données, la navigation, les images,
+la recherche et les validations du formulaire. Exécutez-les avec :
+
+```bash
+flutter analyze
+flutter test
+```
+
+Le pipeline GitHub Actions (`.github/workflows/flutter_ci.yml`) exécute ces
+contrôles à chaque pull request et à chaque mise à jour de `main`.
 
 ## Captures d'écran
 

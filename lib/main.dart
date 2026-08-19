@@ -21,7 +21,7 @@ class _TravelAppState extends State<TravelApp> {
   @override
   void initState() {
     super.initState();
-    _router = AppRouter.createRouter(_toggleTheme, () => _themeMode);
+    _router = AppRouter.createRouter(_toggleTheme);
   }
 
   void _toggleTheme() {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:travel_app/models/destination.dart';
+import 'package:travel_app/widgets/back_to_safe_screen_button.dart';
 
 class BookingFormScreen extends StatefulWidget {
   final Destination? destination;
@@ -65,7 +67,7 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                context.pop();
               },
               child: const Text('OK'),
             ),
@@ -84,13 +86,17 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
               ? 'Réserver - ${widget.destination!.name}'
               : 'Formulaire de réservation',
         ),
+        leading: const BackToSafeScreenButton(
+          fallbackRoute: 'home',
+          tooltip: "Retour à l'accueil",
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: LayoutBuilder(
           builder: (context, constraints) {
             final isTablet = constraints.maxWidth > 600;
-            
+
             return Form(
               key: _formKey,
               child: Column(
@@ -100,13 +106,9 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: _buildPersonalInfoSection(),
-                        ),
+                        Expanded(child: _buildPersonalInfoSection()),
                         const SizedBox(width: 24),
-                        Expanded(
-                          child: _buildTripDetailsSection(),
-                        ),
+                        Expanded(child: _buildTripDetailsSection()),
                       ],
                     )
                   else
@@ -117,9 +119,9 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
                         _buildTripDetailsSection(),
                       ],
                     ),
-                  
+
                   const SizedBox(height: 32),
-                  
+
                   // Submit Button
                   SizedBox(
                     width: double.infinity,
@@ -147,9 +149,9 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
       children: [
         Text(
           'Informations personnelles',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 20),
         TextFormField(
@@ -211,9 +213,9 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
       children: [
         Text(
           'Détails du voyage',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 20),
         // Date Picker
@@ -229,7 +231,7 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
           onTap: _selectDate,
         ),
         const SizedBox(height: 16),
-        
+
         // Number of Travelers
         Row(
           children: [
@@ -247,10 +249,7 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
               },
               icon: const Icon(Icons.remove_circle_outline),
             ),
-            Text(
-              '$_travelers',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            Text('$_travelers', style: Theme.of(context).textTheme.titleMedium),
             IconButton(
               onPressed: () {
                 setState(() {
@@ -262,7 +261,7 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
           ],
         ),
         const SizedBox(height: 16),
-        
+
         // Accommodation Type
         DropdownButtonFormField<String>(
           value: _accommodationType,
@@ -271,10 +270,7 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
             prefixIcon: Icon(Icons.hotel),
           ),
           items: ['Hotel', 'Auberge', 'Appartement', 'Villa', 'Camping']
-              .map((type) => DropdownMenuItem(
-                    value: type,
-                    child: Text(type),
-                  ))
+              .map((type) => DropdownMenuItem(value: type, child: Text(type)))
               .toList(),
           onChanged: (value) {
             setState(() {
@@ -283,7 +279,7 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
           },
         ),
         const SizedBox(height: 16),
-        
+
         if (widget.destination != null)
           Card(
             child: ListTile(
@@ -292,9 +288,9 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
               subtitle: Text('${widget.destination!.price}\$ par personne'),
               trailing: Text(
                 '${widget.destination!.price * _travelers}\$ total',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ),
           ),
