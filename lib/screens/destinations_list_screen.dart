@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:travel_app/data/destinations_data.dart';
 import 'package:travel_app/widgets/destination_card.dart';
 import 'package:travel_app/widgets/custom_search_bar.dart';

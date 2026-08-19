@@ -264,7 +264,7 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
 
         // Accommodation Type
         DropdownButtonFormField<String>(
-          value: _accommodationType,
+          initialValue: _accommodationType,
           decoration: const InputDecoration(
             labelText: 'Type d\'hébergement',
             prefixIcon: Icon(Icons.hotel),
