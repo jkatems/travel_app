@@ -24,6 +24,9 @@ Une application Flutter multi-écrans pour explorer et réserver des destination
 - `DestinationCard` : Carte de destination
 - `CustomSearchBar` : Barre de recherche
 - `RatingStars` : Étoiles de notation
+- `BackToSafeScreenButton` : Retour fiable vers l’écran précédent ou l’accueil
+- `SectionHeader` : Titre de section cohérent avec le thème actif
+- `ResponsiveGrid` : Grille qui adapte automatiquement son nombre de colonnes
 
 ## Installation
 
@@ -71,3 +74,16 @@ lib/
 ├── theme/ # Thèmes clair/sombre
 
 └── router/ # Configuration de la navigation
+
+## Écrans et navigation
+
+L’application propose six écrans : accueil, liste filtrable des destinations,
+détail, réservation, favoris et carte. Les actions rapides de l’accueil donnent
+accès directement aux destinations, aux réservations, aux favoris et à la carte.
+Les écrans secondaires affichent un bouton retour sécurisé.
+
+## Responsive design
+
+Les mises en page utilisent `LayoutBuilder` et `ResponsiveGrid` : les actions
+rapides passent de deux colonnes sur mobile à quatre sur tablette, tandis que la
+liste de destinations utilise deux ou trois colonnes selon l’espace disponible.

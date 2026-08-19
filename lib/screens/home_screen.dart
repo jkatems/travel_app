@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/data/destinations_data.dart';
 import 'package:travel_app/widgets/destination_card.dart';
+import 'package:travel_app/widgets/responsive_grid.dart';
+import 'package:travel_app/widgets/section_header.dart';
 
 class HomeScreen extends StatelessWidget {
   final VoidCallback toggleTheme;
@@ -94,11 +96,7 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Destinations Populaires',
-                        style: Theme.of(context).textTheme.headlineSmall
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
+                      const SectionHeader(title: 'Destinations Populaires'),
                       const SizedBox(height: 20),
                       SizedBox(
                         height: 250,
@@ -123,18 +121,13 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 40),
 
                       // Quick Actions
-                      Text(
-                        'Actions Rapides',
-                        style: Theme.of(context).textTheme.headlineSmall
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
+                      const SectionHeader(title: 'Actions Rapides'),
                       const SizedBox(height: 20),
-                      GridView.count(
-                        crossAxisCount: isTablet ? 4 : 2,
+                      ResponsiveGrid(
+                        maxColumns: 4,
+                        minItemWidth: 150,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        mainAxisSpacing: 16,
-                        crossAxisSpacing: 16,
                         childAspectRatio: 1.5,
                         children: [
                           _buildQuickAction(
@@ -142,7 +135,7 @@ class HomeScreen extends StatelessWidget {
                             icon: Icons.search,
                             label: 'Explorer',
                             color: Colors.orange,
-                            onTap: () => context.goNamed('favorites'),
+                            onTap: () => context.goNamed('destinations'),
                           ),
                           _buildQuickAction(
                             context,
@@ -156,14 +149,14 @@ class HomeScreen extends StatelessWidget {
                             icon: Icons.favorite,
                             label: 'Favoris',
                             color: Colors.red,
-                            onTap: () => context.goNamed('map'),
+                            onTap: () => context.goNamed('favorites'),
                           ),
                           _buildQuickAction(
                             context,
                             icon: Icons.map,
                             label: 'Carte',
                             color: Colors.purple,
-                            onTap: () => context.goNamed('destinations'),
+                            onTap: () => context.goNamed('map'),
                           ),
                         ],
                       ),
